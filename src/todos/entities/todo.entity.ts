@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 
 @Entity()
@@ -12,6 +12,10 @@ export class Todo {
   @Column({ nullable: true })
   description?: string;
 
-  @ManyToOne(() => User, (user) => user.todos, { onDelete: 'CASCADE', nullable: true })
+  @Column()
+  userId!: number;
+
+  @ManyToOne(() => User, (user) => user.todos, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'userId' })
   user?: User;
 }
