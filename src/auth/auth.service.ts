@@ -19,7 +19,7 @@ export class AuthService {
         const user = await this.userRepository.findOne({where: { email: loginDto.email }});
 
         if (!user || (await bcrypt.compare(loginDto.password, user.password)) === false) {
-            throw new Error('Thông tin đăng nhập không chính xác');
+            throw new Error('Invalid email or password');
         }
 
         const payload = { email: user.email, sub: user.id };
@@ -30,7 +30,7 @@ export class AuthService {
     async register(registerDto: RegisterDto) {
         const existingUser = await this.userRepository.findOne({ where: { email: registerDto.email } });
         if (existingUser) {
-            throw new ConflictException('Email đã được sử dụng');
+            throw new ConflictException('Email is already in use');
         }
 
         const hashedPassword = await bcrypt.hash(registerDto.password, 10);
