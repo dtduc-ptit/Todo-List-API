@@ -13,4 +13,5 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   password: process.env.DB_PASSWORD || '141203',
   database: process.env.DB_NAME || 'todo_app',
   entities: [User, Todo],
+  synchronize: true,
 };
