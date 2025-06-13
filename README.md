@@ -107,8 +107,6 @@ The API will be available at http://localhost:3000.
 
 ## API Endpoints
 
-Below is a summary of the available endpoints. All endpoints except /auth/Register and /auth/Login require a JWT token in the Authorization header (Bearer <token>).
-
 | Method | Endpoint       | Description                               |
 | ------ | -------------- | ----------------------------------------- |
 | POST   | register | Register a new user                       |
